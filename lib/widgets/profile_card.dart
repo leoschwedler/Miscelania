@@ -5,6 +5,9 @@ class ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 16),
       child: Padding(
@@ -15,16 +18,16 @@ class ProfileCard extends StatelessWidget {
             CircleAvatar(
               radius: 50,
               backgroundImage: const AssetImage('assets/images/profile.jpeg'),
-              backgroundColor: Colors.grey[300],
+              backgroundColor: colorScheme.surface,
             ),
             const SizedBox(height: 16),
 
             // Nome
             Text(
               'Leonardo Schwedler',
-              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+              style: theme.textTheme.headlineLarge?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: colorScheme.onSurface,
               ),
               textAlign: TextAlign.center,
             ),
@@ -33,8 +36,8 @@ class ProfileCard extends StatelessWidget {
             // Bio
             Text(
               'Desenvolvedor mobile atuando com Flutter e Android nativo. Apaixonado por criar experiências únicas e inovadoras através do desenvolvimento de aplicativos.',
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: Colors.grey[300],
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: theme.textTheme.bodyMedium?.color,
                 height: 1.4,
               ),
               textAlign: TextAlign.center,
@@ -86,9 +89,12 @@ class _SocialMediaButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return IconButton(
       onPressed: onPressed,
-      icon: Icon(icon, color: Colors.white, size: 24),
+      icon: Icon(icon, color: colorScheme.onSurface, size: 24),
       style: IconButton.styleFrom(
         backgroundColor: Colors.transparent,
         padding: const EdgeInsets.all(12),

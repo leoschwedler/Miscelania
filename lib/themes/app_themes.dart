@@ -27,9 +27,16 @@ class AppThemes {
 
       // AppBar
       appBarTheme: const AppBarTheme(
-        backgroundColor: cardColor,
+        backgroundColor: backgroundColor,
         foregroundColor: Colors.white,
         elevation: 0,
+        centerTitle: true,
+        titleTextStyle: TextStyle(
+          fontFamily: 'Poppins',
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+        ),
       ),
 
       // Bottom Navigation Bar
@@ -118,9 +125,16 @@ class AppThemes {
 
       // AppBar
       appBarTheme: const AppBarTheme(
-        backgroundColor: highlightColor,
+        backgroundColor: Color(0xFFD6DFE4),
         foregroundColor: cardColor,
         elevation: 0,
+        centerTitle: true,
+        titleTextStyle: TextStyle(
+          fontFamily: 'Poppins',
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          color: cardColor,
+        ),
       ),
 
       // Bottom Navigation Bar

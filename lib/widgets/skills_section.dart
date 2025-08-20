@@ -5,14 +5,17 @@ class SkillsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Habilidades e Competências',
-          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+          style: theme.textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: colorScheme.onSurface,
           ),
         ),
         const SizedBox(height: 16),
@@ -43,6 +46,9 @@ class _SkillItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Row(
       children: [
         // Nome da habilidade
@@ -50,8 +56,8 @@ class _SkillItem extends StatelessWidget {
           flex: 2,
           child: Text(
             skillName,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: Colors.white,
+            style: theme.textTheme.bodyLarge?.copyWith(
+              color: colorScheme.onSurface,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -64,8 +70,8 @@ class _SkillItem extends StatelessWidget {
           flex: 3,
           child: LinearProgressIndicator(
             value: progress,
-            backgroundColor: Colors.grey[600],
-            valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF4299E1)),
+            backgroundColor: colorScheme.surface,
+            valueColor: AlwaysStoppedAnimation<Color>(colorScheme.primary),
             borderRadius: BorderRadius.circular(4),
             minHeight: 8,
           ),

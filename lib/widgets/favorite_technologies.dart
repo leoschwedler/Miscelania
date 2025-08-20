@@ -5,14 +5,17 @@ class FavoriteTechnologies extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Tecnologias Favoritas',
-          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+          style: theme.textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: colorScheme.onSurface,
           ),
         ),
         const SizedBox(height: 16),
@@ -26,7 +29,7 @@ class FavoriteTechnologies extends StatelessWidget {
               return _TechnologyCard(
                 name: 'Flutter',
                 icon: Icons.flutter_dash,
-                color: const Color(0xFF4299E1),
+                color: colorScheme.primary,
               );
             },
           ),
@@ -49,6 +52,9 @@ class _TechnologyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Container(
       width: 80,
       margin: const EdgeInsets.only(right: 16),
@@ -62,8 +68,8 @@ class _TechnologyCard extends StatelessWidget {
               const SizedBox(height: 8),
               Text(
                 name,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Colors.white,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: colorScheme.onSurface,
                   fontWeight: FontWeight.w500,
                 ),
                 textAlign: TextAlign.center,
