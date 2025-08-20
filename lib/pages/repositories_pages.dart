@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miscelania/widgets/repositories_header.dart';
 
 class RepositoriesPages extends StatelessWidget {
   const RepositoriesPages({super.key});
@@ -12,14 +13,7 @@ class RepositoriesPages extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header da página
-            const Text(
-              'Repositórios',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
+            RepositoriesHeader(),
             const SizedBox(height: 16),
 
             // Conteúdo da página
