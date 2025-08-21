@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:miscelania/models/profile_model.dart';
 
 class ProfileCard extends StatelessWidget {
-  const ProfileCard({super.key});
+  final ProfileModel? profile;
+
+  const ProfileCard({super.key, this.profile});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+
+    // Usar profile fornecido ou criar um padrão
+    final profileData = profile ?? ProfileModel.defaultProfile();
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 16),
@@ -17,14 +23,14 @@ class ProfileCard extends StatelessWidget {
             // Foto do perfil
             CircleAvatar(
               radius: 50,
-              backgroundImage: const AssetImage('assets/images/profile.jpeg'),
+              backgroundImage: AssetImage(profileData.profileImagePath),
               backgroundColor: colorScheme.surface,
             ),
             const SizedBox(height: 16),
 
             // Nome
             Text(
-              'Leonardo Schwedler',
+              profileData.name,
               style: theme.textTheme.headlineLarge?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: colorScheme.onSurface,
@@ -35,7 +41,7 @@ class ProfileCard extends StatelessWidget {
 
             // Bio
             Text(
-              'Desenvolvedor mobile atuando com Flutter e Android nativo. Apaixonado por criar experiências únicas e inovadoras através do desenvolvimento de aplicativos.',
+              profileData.bio,
               style: theme.textTheme.bodyLarge?.copyWith(
                 color: theme.textTheme.bodyMedium?.color,
                 height: 1.4,

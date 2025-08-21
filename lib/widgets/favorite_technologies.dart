@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:miscelania/models/technology_model.dart';
+import 'package:miscelania/mock/sample_data.dart';
 
 class FavoriteTechnologies extends StatelessWidget {
-  const FavoriteTechnologies({super.key});
+  final List<TechnologyModel>? technologies;
+
+  const FavoriteTechnologies({super.key, this.technologies});
 
   @override
   Widget build(BuildContext context) {
@@ -24,18 +28,43 @@ class FavoriteTechnologies extends StatelessWidget {
           height: 100,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 10,
+            itemCount:
+                technologies?.length ?? SampleData.sampleTechnologies.length,
             itemBuilder: (context, index) {
+              final tech =
+                  technologies?[index] ?? SampleData.sampleTechnologies[index];
               return _TechnologyCard(
-                name: 'Flutter',
-                icon: Icons.flutter_dash,
-                color: colorScheme.primary,
+                name: tech.name,
+                icon: _getIconData(tech.iconName),
+                color: Color(tech.colorValue),
               );
             },
           ),
         ),
       ],
     );
+  }
+
+  // Método para converter string de ícone em IconData
+  IconData _getIconData(String iconName) {
+    switch (iconName) {
+      case 'flutter_dash':
+        return Icons.flutter_dash;
+      case 'code':
+        return Icons.code;
+      case 'work':
+        return Icons.work;
+      case 'school':
+        return Icons.school;
+      case 'home':
+        return Icons.home;
+      case 'person':
+        return Icons.person;
+      case 'folder':
+        return Icons.folder;
+      default:
+        return Icons.flutter_dash; // Ícone padrão
+    }
   }
 }
 

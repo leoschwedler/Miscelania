@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:miscelania/models/theme_model.dart';
 
 class ThemeController extends ChangeNotifier {
-  ThemeMode _themeMode = ThemeMode.dark;
-  ThemeMode get themeMode => _themeMode;
+  ThemeModel _themeModel = ThemeModel.dark();
+
+  ThemeMode get themeMode => _themeModel.themeMode;
+  ThemeModel get themeModel => _themeModel;
+  bool get isDark => _themeModel.isDark;
+  String get themeName => _themeModel.themeName;
 
   void toggleTheme() {
-    _themeMode =
-        _themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+    _themeModel = _themeModel.toggle();
     notifyListeners();
   }
 
   void setTheme(ThemeMode mode) {
-    _themeMode = mode;
+    _themeModel = _themeModel.setTheme(mode);
     notifyListeners();
   }
 }

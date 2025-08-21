@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miscelania/models/navigation_model.dart';
 
 class CustomBottomNavigation extends StatefulWidget {
   final int currentIndex;
@@ -36,46 +37,30 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              // Aba Atividades
-              _buildTabItem(
-                index: 0,
-                icon: Icons.track_changes,
-                label: 'Atividades',
-                isActive: widget.currentIndex == 0,
-                theme: theme,
-              ),
+              ...NavigationItemModel.allItems.asMap().entries.map((entry) {
+                final index = entry.key;
+                final item = entry.value;
 
-              // Separador vertical
-              Container(
-                width: 1,
-                height: 40,
-                color: theme.colorScheme.surface.withOpacity(0.3),
-              ),
+                return Row(
+                  children: [
+                    _buildTabItem(
+                      index: index,
+                      icon: item.icon,
+                      label: item.title,
+                      isActive: widget.currentIndex == index,
+                      theme: theme,
+                    ),
 
-              // Aba Repositórios
-              _buildTabItem(
-                index: 1,
-                icon: Icons.folder,
-                label: 'Repositórios',
-                isActive: widget.currentIndex == 1,
-                theme: theme,
-              ),
-
-              // Separador vertical
-              Container(
-                width: 1,
-                height: 40,
-                color: theme.colorScheme.surface.withOpacity(0.3),
-              ),
-
-              // Aba Perfil
-              _buildTabItem(
-                index: 2,
-                icon: Icons.person,
-                label: 'Perfil',
-                isActive: widget.currentIndex == 2,
-                theme: theme,
-              ),
+                    // Separador vertical (exceto para o último item)
+                    if (index < NavigationItemModel.allItems.length - 1)
+                      Container(
+                        width: 1,
+                        height: 40,
+                        color: theme.colorScheme.surface.withOpacity(0.3),
+                      ),
+                  ],
+                );
+              }).toList(),
             ],
           ),
         ),
