@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:miscelania/controllers/task_controller.dart';
+import 'package:miscelania/models/task_model.dart';
 
 class NewTaskPage extends StatefulWidget {
   const NewTaskPage({super.key});
@@ -11,33 +14,24 @@ class _NewTaskPageState extends State<NewTaskPage> {
   final _formKey = GlobalKey<FormState>();
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
-
-  @override
-  void dispose() {
-    _titleController.dispose();
-    _descriptionController.dispose();
-    super.dispose();
-  }
+  final controller = GetIt.instance<TaskController>();
 
   void _createTask() {
     if (_formKey.currentState!.validate()) {
-      // TODO: Implementar lógica para criar a task
       final title = _titleController.text.trim();
       final description = _descriptionController.text.trim();
-
-      print('Criando task: $title - $description');
-
-      // Limpar formulário após criar
+      final TaskModel task = TaskModel(title: title, description: description);
+      controller.addTask(task);
       _titleController.clear();
       _descriptionController.clear();
 
-      // Mostrar feedback ao usuário
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Task criada com sucesso!'),
           backgroundColor: Colors.green,
         ),
       );
+      Navigator.of(context).pop();
     }
   }
 
@@ -128,5 +122,12 @@ class _NewTaskPageState extends State<NewTaskPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _descriptionController.dispose();
+    super.dispose();
   }
 }

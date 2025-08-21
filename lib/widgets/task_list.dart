@@ -42,7 +42,6 @@ class TaskList extends StatelessWidget {
 
   Widget _buildEmptyState(BuildContext context) {
     final theme = Theme.of(context);
-
     return Container(
       padding: const EdgeInsets.all(32),
       child: Column(

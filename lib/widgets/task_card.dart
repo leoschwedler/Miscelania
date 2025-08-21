@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:miscelania/controllers/task_controller.dart';
 import 'package:miscelania/models/task_model.dart';
 
 class TaskCard extends StatelessWidget {
@@ -8,6 +10,7 @@ class TaskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final controller = GetIt.instance<TaskController>();
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -37,7 +40,7 @@ class TaskCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24),
                 ),
                 child: Icon(
-                  Icons.abc_outlined,
+                  Icons.task,
                   color: theme.colorScheme.onPrimary,
                   size: 24,
                 ),
@@ -48,15 +51,12 @@ class TaskCard extends StatelessWidget {
               // Título e contador de exercícios
               Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       taskModel.title,
                       style: theme.textTheme.headlineMedium,
-                    ),
-                    Text(
-                      'Exercícios: ${taskModel.id}',
-                      style: theme.textTheme.bodyMedium,
                     ),
                   ],
                 ),
@@ -76,28 +76,19 @@ class TaskCard extends StatelessWidget {
 
           // Botões de ação
           Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              // Link do GitHub
-              Expanded(
-                child: InkWell(
-                  onTap: () {},
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.code,
-                        color: theme.colorScheme.onSurface,
-                        size: 20,
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        'Acessar código fonte',
-                        style: theme.textTheme.bodyMedium,
-                      ),
-                    ],
-                  ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                onPressed: () {
+                  controller.removeTask(taskModel);
+                },
+                child: const Text(
+                  'Remover',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                 ),
               ),
+              Spacer(),
 
               // Botão "Ver mais"
               ElevatedButton(

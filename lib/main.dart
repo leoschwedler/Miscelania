@@ -6,8 +6,9 @@ import 'package:miscelania/routes/router.dart';
 import 'package:miscelania/routes/app_routes.dart';
 import 'package:miscelania/themes/app_themes.dart';
 
-void main() {
-  injector();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await injector();
   runApp(const MyApp());
 }
 
